@@ -24,3 +24,12 @@ cd ~
 ### CREATE SIMLINK ###
 ln -s /usr/local/bin/npm /usr/bin/npm
 
+### CREATE DEPLOY USER ###
+
+useradd -s /bin/bash -m -d /home/deploy -c "deploy user" deploy
+echo deploy:challenge2017 | chpasswd
+usermod -aG sudo deploy 
+
+### INSTALL PM2 DOR SECURE DEPLOY ###
+
+npm install pm2 -g 
