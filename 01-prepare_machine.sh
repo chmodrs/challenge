@@ -30,6 +30,6 @@ useradd -s /bin/bash -m -d /home/deploy -c "deploy user" deploy
 echo deploy:challenge2017 | chpasswd
 usermod -aG sudo deploy 
 
-### INSTALL PM2 DOR SECURE DEPLOY ###
+### INSTALL PM2 FOR SECURE DEPLOY ###
 
 npm install pm2 -g 
