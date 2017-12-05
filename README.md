@@ -26,4 +26,30 @@ Utilizamos o PM2 para fazer o deploy e rollback seguro das nossas aplicações. 
 
 O PM2 utiliza um arquivo de configuração, onde definimos alguns steps, como deploy, rollback, etc. No noso cas estamos utilizando o arquivo "ecosystem.config.js"
 
+No ecosystem.config.js definimos um repositório git onde estará nossa aplicação, após fazer a sincronização remota, como no exemplo abaixo:
+
+```
+git pull https://github.com/chmodrs/challenge.git
+git push -u origin -all
+```
+
+Após isso basta executar a aplicação com os comandos
+
+```
+pm2 deploy ecosystem.config.js production setup
+pm2 deploy ecosystem.config.js production
+```
+
+Se precisar parar a aplicação
+
+```
+pm2 stop ecosystem.config.js
+```
+
+Com o pm2, nossa aplicação estará rodando na porta 3000, pensando em facilitar isso vamos criar um proxy
+reverso utilizando o nginx, redirecionando as requisições da porta 3000 para a porta 80. Em nosso cluster, por mais processadores que existam na máquina, todas instâncias criadas pelo node irão rodar na porta 3000, não havendo necessidade de utilizar um service discovery com o nginx para criar o load balancer.
+
+* Para instalar e configurar o proxy reverso execute o script "02-nginx-confg.sh"
+
+O script irá fazer a configuração do proxy reverso, encaminhando todas requisições da porta 80 para a porta 3000 do node, e após isso fazer um reload no serviço do nginx.
 
