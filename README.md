@@ -1,26 +1,29 @@
-# challenge
+# Node Challenge
 
-Requirements: Ubuntu 16.04 LTS
+* Pré-requisitos: Ubuntu 16.04 LTS
 
-Steps
+Entre no diretório /root e faça o download do repositório git.
 
-### Create APP Directory ###
-
-mkdir /app
-
-### Download script files ###
-
+```
 git clone https://github.com/chmodrs/challenge.git
+```
 
-### Move to challenge directory and exec 01-prepare-machine.sh ###
-### "01-prepare-machine.sh is a script that installs all S.O dependencies and compile NodeJS" ###
-### This script intall PM2 for secure deploy and rollback node apps ###
+Entre no diretório "challenge" e execute o script "01-prepare-machine.sh"
 
-mv challenge
-./01-prepare-machine.sh
+Esse script irá atualizar todo o Sistema Operacional, compilar o pacote do nodejs, instalar o pm2 e
+criar o usuário que irá fazer o deploy através do pm2.
 
-### Exec 02-nginx-conf.sh for install nginx and configure to reverse proxy ###
-### After nginx install, the service listen 3000 port for node apps ###
-### run pm2 deploy in app directory for run node application ###
+Após isso a aplicação já estará pronta para ser executada.
 
-pm2 deploy production
+O app.js é nossa aplicação node, ela sendo executada diretamente não utiliza o conceito de 
+clusterização, para corrigir isso criamos o cluster.js, que executa a aplicação clusterizada de 
+acordo com o número de processadores na máquina.
+
+O package.json contém todas nossas dependencias que a aplicação necessita, no nosso caso a biblioteca
+express.
+
+Utilizamos o PM2 para fazer o deploy e rollback seguro das nossas aplicações. É uma ferramenta poderosa, que é possível além de deploy, criar load balancer, scripts de inicialização, etc...
+
+O PM2 utiliza um arquivo de configuração, onde definimos alguns steps, como deploy, rollback, etc. No noso cas estamos utilizando o arquivo "ecosystem.config.js"
+
+
