@@ -82,5 +82,5 @@ Lembrando que esse script já leva em consideração que você está com seu sen
 
 ## Node Monitor
 
-Para monitorar nossa aplicação node, vamos utilizar o script 05-node-monitor.sh, que faz o monitoramento com base no HTTP CODE recebido, em nosso ambiente, caso não retorne 200, vamos reiniciar nossa aplicação e dar um reload no NGINX.
+Para monitorar nossa aplicação node, vamos utilizar o script 05-node-monitor.sh, que faz o monitoramento com base no HTTP CODE recebido, caso o valor recebido não seja 200, ele irá fazer o restart do pm2 e reload das configurações do NGINX.
 
