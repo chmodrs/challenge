@@ -59,4 +59,22 @@ Para testarmos a capacidade de nosso servidor, vamos utilizar um script que util
 
 Esse script pode ser facilmente editado para realidade do seu servidor, mas nele já está alguns dos testes de acesso mais próximos da realidade de pequenos sites, e aumentando para grandes cargas de acesso.
 
+Para rodar o Benchmark
 
+```
+./03-stress-nginx.sh
+```
+
+## NGINX Report
+
+Para garantir a estabilidade e disponibilidade do nosso webserver, vamos adicionar um script que irá ler as requisições recebidas pelo NGINX e irá enviar um e-mail no final do dia com o conteúdo das mesmas. Esse script vai basicamente ler as requisições 4xx e 5xx no log do NGINX e nos enviar de forma legível.
+
+Para agendar esse script para vir a ser um relatório diário, vamos adicionar uma entrada no crontab da seguinte forma
+
+```
+0 23 * * * /etc/init.d/04-nginx-report.sh >/dev/null 2>&1
+```
+
+Ou seja, vamos pegar o script  04-nginx-report.sh e copiar para o diretório /etc/init.d/, dar permissão de execução. Depois precisamos editar a variável "MAIL" adicionando o e-mail que queremos receber o relatório, e pronto!
+
+Lembrando que esse script já leva em consideração que você está com seu sendmail configurado.
