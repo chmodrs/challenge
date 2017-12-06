@@ -78,3 +78,9 @@ Para agendar esse script para vir a ser um relatório diário, vamos adicionar u
 Ou seja, vamos pegar o script  04-nginx-report.sh e copiar para o diretório /etc/init.d/, dar permissão de execução. Depois precisamos editar a variável "MAIL" adicionando o e-mail que queremos receber o relatório, e pronto!
 
 Lembrando que esse script já leva em consideração que você está com seu sendmail configurado.
+
+
+## Node Monitor
+
+Para monitorar nossa aplicação node, vamos utilizar o script 05-node-monitor.sh, que faz o monitoramento com base no HTTP CODE recebido, em nosso ambiente, caso não retorne 200, vamos reiniciar nossa aplicação e dar um reload no NGINX.
+
