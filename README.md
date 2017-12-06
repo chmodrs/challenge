@@ -51,5 +51,12 @@ reverso utilizando o nginx, redirecionando as requisições da porta 3000 para a
 
 * Para instalar e configurar o proxy reverso execute o script "02-nginx-confg.sh"
 
-O script irá fazer a configuração do proxy reverso, encaminhando todas requisições da porta 80 para a porta 3000 do node, e após isso fazer um reload no serviço do nginx.
+O script irá fazer a configuração do proxy reverso, encaminhando todas requisições da porta 80 para a porta 3000 do node, e após isso fazer um reload no serviço do nginx. Após a execução do script, sua aplicação node já poderá ser acessível através do NGINX.
+
+## NGINX Stress Test
+
+Para testarmos a capacidade de nosso servidor, vamos utilizar um script que utiliza o AB (apache benchmark) para simular algumas conexões e stress do nosso web server.
+
+Esse script pode ser facilmente editado para realidade do seu servidor, mas nele já está alguns dos testes de acesso mais próximos da realidade de pequenos sites, e aumentando para grandes cargas de acesso.
+
 
